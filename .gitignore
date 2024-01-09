@@ -1,0 +1,10 @@
+*.doc*
+
+/data-grabber
+
+**/target
+**/.idea
+
+**/dist
+**/node_modules
+**/.vscode

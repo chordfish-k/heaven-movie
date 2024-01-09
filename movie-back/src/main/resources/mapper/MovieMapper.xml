@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chord.lsr.mapper.MovieMapper">
+
+    <select id="queryPage" resultType="com.chord.lsr.pojo.entity.Movie">
+        select * from movie
+        order by release_time desc
+    </select>
+    <select id="queryAll" resultType="com.chord.lsr.pojo.entity.Movie">
+        select * from movie
+        order by release_time desc
+    </select>
+    <select id="query" resultType="com.chord.lsr.pojo.entity.Movie">
+        select * from movie
+        <where>
+            <if test="name!=null">and name like concat('%',#{name},'%') </if>
+            <if test="type!=null">and type like concat('%',#{type},'%')</if>
+            <if test="zoom!=null">and zoom like concat('%',#{zoom},'%')</if>
+            <if test="staff!=null">and staff like concat('%',#{staff},'%')</if>
+            <if test="catId!=null"> and cat_ids like concat('%,',#{catId},',%')</if>
+            <if test="sourceId!=null"> and source_ids like concat('%,',#{sourceId},',%')</if>
+            <if test="yearId!=null&amp;&amp;yearId!=0"> and year_id = #{yearId}</if>
+            <if test="yearBegin!=null">
+                and DATE(release_time) &gt;= DATE(CONCAT(#{yearBegin},'-01-01'))
+            </if>
+            <if test="yearEnd!=null">
+                and DATE(release_time) &lt;= DATE(CONCAT(#{yearEnd},'-12-31'))
+            </if>
+            <if test="keyword!=null">and name like concat('%',#{keyword},'%')</if>
+            <if test="vip!=null&amp;&amp;vip!=0">and vip = #{vip}</if>
+        </where>
+    </select>
+    <select id="queryOnHot" resultType="com.chord.lsr.pojo.entity.Movie">
+        select * from v_hot
+        <where>
+            <if test="name!=null">and name like concat('%',#{name},'%') </if>
+            <if test="type!=null">and type like concat('%',#{type},'%')</if>
+            <if test="zoom!=null">and zoom like concat('%',#{zoom},'%')</if>
+            <if test="staff!=null">and staff like concat('%',#{staff},'%')</if>
+            <if test="catId!=null"> and cat_id like concat('%',#{catId},',%')</if>
+            <if test="sourceId!=null"> and source_id like concat('%',#{sourceId},',%')</if>
+            <if test="yearId!=null&amp;&amp;yearId!=0"> and year_id like concat('%',#{yearId},',%')</if>
+            <if test="yearBegin!=null">
+                and DATE(release_time) &gt;= DATE(CONCAT(#{yearBegin},'-01-01'))
+            </if>
+            <if test="yearEnd!=null">
+                and DATE(release_time) &lt;= DATE(CONCAT(#{yearEnd},'-12-31'))
+            </if>
+            <if test="keyword!=null">and name like concat('%',#{keyword},'%')</if>
+            <if test="vip!=null&amp;&amp;vip!=0">and vip = #{vip}</if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,51 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql:///movie?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    mapUnderscoreToCamelCase: 'true'
+
+haven-movie:
+  media:
+    url: 127.0.0.1:${server.port}/img/
+    image-path: ${user.dir}/media/pic/
+    video-path: ${user.dir}/media/video/
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    secret-key: boynextdoor
+    # 设置jwt过期时间
+    ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    token-name: token
+
+  rank:
+    cron: '* * 0 * * ?'
+    rank-list:
+      - rank-id: BY_SCORE
+        count: 10
+      - rank-id: BY_HOT
+        count: 15
+      - rank-id: BY_LIKE
+        count: 10
+      - rank-id: BY_COMP
+        count: 30
+
+logging:
+  file:
+    name: ${user.dir}/log/log.log
+  level:
+    com:
+      chord:
+        lsr:
+          mapper: info
+          service: info
+          controller: info
+
