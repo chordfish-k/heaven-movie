@@ -16,9 +16,10 @@
 
 ### 后端部分
 
-1. 使用IDEA打开`movie-back/`
-2. 根据注释，更改`src/resources/application.yml`的`spring.datasource`配置
-3. 启动SpringBoot服务，默认端口为`8080`
+1. 导入`movie-back/sql-init/movie.sql`数据库表
+2. 使用IDEA打开`movie-back/`
+3. 根据注释，更改`src/resources/application.yml`的`spring.datasource`配置
+4. 启动SpringBoot服务，默认端口为`8080`
 
 ### 前端部分
 
