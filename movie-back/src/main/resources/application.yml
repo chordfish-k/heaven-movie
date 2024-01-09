@@ -4,8 +4,11 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库用户名
     username: root
+    # 用户密码
     password: 123456
+    # 数据库访问路径，其中 '///' 是 '//ip:端口号/' 为 'localhost:3306/' 的简写
     url: jdbc:mysql:///movie?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
 
 mybatis-plus:
