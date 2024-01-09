@@ -2,6 +2,7 @@
 
 /data-grabber
 
+**/log/**
 **/target
 **/.idea
 
