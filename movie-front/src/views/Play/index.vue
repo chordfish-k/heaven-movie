@@ -5,6 +5,7 @@ import { getMovieFileNameByIdAPI } from '@/apis/video'
 import { ElMessage } from 'element-plus';
 import router from '@/router';
 import { useUserStore } from '@/stores/userStore';
+import axios, { Axios } from 'axios';
 
 
 const userStore = useUserStore()
@@ -35,12 +36,12 @@ const playerOptions = ref({
         remainingTimeDisplay: false,
         fullscreenToggle: true // 全屏按钮
     },
-    controlsList: 'nodownload'
 })
 
 
 const info = ref({})
 const videoPath = ref("")
+
 
 // 查询该电影信息
 const getMovieData = async () => {
@@ -48,8 +49,15 @@ const getMovieData = async () => {
     info.value = res.data
     // videoPath.value = "//localhost:8080/v/rick.mp4"// + id.value + "?token=" + userStore.userInfo.token
     // videoPath.value = `//localhost:8080/v/${id.value}.mp4`
-    const lres = await getMovieFileNameByIdAPI(id.value)
-    videoPath.value = `//localhost:8080/v/${lres.data.src}`
+    // const lres = await getMovieFileNameByIdAPI(id.value)
+    console.log(userStore.userInfo)
+
+    const lres = await getMovieFileNameByIdAPI(id.value, userStore.userInfo.token)
+    console.log(lres)
+    const blob = new Blob([lres.data], { type: lres.data.type })
+    // videoPath.value = `//localhost:8080/v/${lres.data.src}`
+    videoPath.value = URL.createObjectURL(blob)
+    console.log(videoPath.value)
 }
 
 
@@ -94,22 +102,20 @@ onMounted(async () => {
                     <div v-if="videoPath"
                          class="video-box">
 
-                        <video-player v-if="userStore.userInfo.token"
+
+                        <!--<video-player v-if="userStore.userInfo.token"
                                       :src="videoPath"
                                       :options="playerOptions"
                                       :volume="0.6"
-                                      controlsList="nodownload" />
-                        <!-- <video v-if="userStore.userInfo.token"
-                               scrolling="no"
-                               border="0"
-                               frameborder="no"
-                               framespacing="0"
-                               allowfullscreen="true"
+                                      controlsList="nodownload" />-->
+                        <video v-if="userStore.userInfo.token"
+                               controls
+                               autoplay
                                class="video"
-                               @play="onPlay">
+                               controlslist="nodownload">
                             <source :src="videoPath"
                                     type="video/mp4">
-                        </video> -->
+                        </video>
                         <div v-else
                              class="video">
                             <div class="miss">
@@ -190,7 +196,7 @@ onMounted(async () => {
 }
 
 .video {
-
+    background-color: black;
     margin-top: 10px;
     width: 668px;
     height: 422px;

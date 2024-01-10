@@ -88,9 +88,11 @@ public class VideoController {
         return Result.success(new VideoVO(filePath.getFileName().toString(), mimeType));
     }
 
-/*    @GetMapping("/d/{id}")
+    @GetMapping("/d/{id}")
     @Transactional
-    public void videoPreview(@PathVariable Long id, String token, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void videoPreview(@PathVariable Long id,HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String token = request.getHeader(jwtProperties.getTokenName());
+        log.info("获取视频流：{}, {}", id, token);
         //校验令牌
         try {
             log.info("jwt校验:{}", token);
@@ -146,5 +148,5 @@ public class VideoController {
             response.setStatus(401);
         }
 
-    }*/
+    }
 }

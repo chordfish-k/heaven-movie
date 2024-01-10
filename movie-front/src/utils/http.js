@@ -4,8 +4,9 @@ import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/userStore'
 import router from '@/router'
 
+export const baseURL = 'http://localhost:8080'
 const httpInstance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL,
   timeout: 5000
 })
 
@@ -69,4 +70,7 @@ export const http = (options) => {
   })
 }
 
-export default http
+export default {
+   http,
+   baseURL
+}
