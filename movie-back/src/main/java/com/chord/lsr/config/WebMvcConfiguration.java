@@ -47,7 +47,8 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
                 .addPathPatterns("/user/user/privilege/**")
                 .addPathPatterns("/user/history")
                 .addPathPatterns("/user/video/getUrl/**")
-                .addPathPatterns("/user/like/**");
+                .addPathPatterns("/user/like/**")
+                .addPathPatterns("/user/movie/view/**");
     }
 
 
