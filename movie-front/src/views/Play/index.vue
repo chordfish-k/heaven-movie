@@ -1,7 +1,6 @@
 <script setup>
-import { ref, toRefs, onMounted, computed, h, onBeforeUnmount, reactive } from 'vue';
-import { getMovieByIdAPI } from '@/apis/movie'
-import { getMovieFileNameByIdAPI } from '@/apis/video'
+import { ref, toRefs, onMounted, computed, h } from 'vue';
+import { getMovieByIdAPI, putMovieViewAPI, getMovieBlobByIdAPI } from '@/apis/movie'
 import { ElMessage } from 'element-plus';
 import router from '@/router';
 import { useUserStore } from '@/stores/userStore';
@@ -16,20 +15,26 @@ const props = defineProps({
 
 const { id } = toRefs(props)
 
+// 视频设置
 const playerOptions = ref({
     // height: 200,
     // width: document.documentElement.clientWidth, //播放器宽度
-    // src: '',
+    sources: [{
+        type: 'video/mp4',
+        src: ''
+    }
+    ],
     playbackRates: [0.5, 1.0, 1.5, 2.0], // 播放速度
     autoplay: 'any', // 如果true,浏览器准备好时开始回放。
-    muted: false, // 静音
-    loop: true, // 导致视频一结束就重新开始。
+    loop: false, // 导致视频一结束就重新开始。
     preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
     language: 'zh-CN',
     aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
     fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
     notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
     controls: true,
+    controlsList: 'nodownload',
+    disableContextMenu: true, // 禁止右击菜单
     controlBar: {
         timeDivider: true,
         durationDisplay: true,
@@ -45,19 +50,16 @@ const videoPath = ref("")
 
 // 查询该电影信息
 const getMovieData = async () => {
+    // 获取基本信息
     const res = await getMovieByIdAPI(id.value)
     info.value = res.data
-    // videoPath.value = "//localhost:8080/v/rick.mp4"// + id.value + "?token=" + userStore.userInfo.token
-    // videoPath.value = `//localhost:8080/v/${id.value}.mp4`
-    // const lres = await getMovieFileNameByIdAPI(id.value)
-    console.log(userStore.userInfo)
 
-    const lres = await getMovieFileNameByIdAPI(id.value, userStore.userInfo.token)
-    console.log(lres)
+    // 获取视频流
+    const lres = await getMovieBlobByIdAPI(id.value, userStore.userInfo.token)
     const blob = new Blob([lres.data], { type: lres.data.type })
-    // videoPath.value = `//localhost:8080/v/${lres.data.src}`
-    videoPath.value = URL.createObjectURL(blob)
-    console.log(videoPath.value)
+    const url = videoPath.value = URL.createObjectURL(blob)
+    playerOptions.value.sources[0].src = url
+    playerOptions.value.sources[0].type = lres.data.type
 }
 
 
@@ -65,6 +67,8 @@ const getMovieData = async () => {
 const splitedBrief = computed(() => {
     return String(info.value.brief).split('\n')
 })
+
+let playFlag = false
 
 onMounted(async () => {
     await getMovieData()
@@ -80,7 +84,17 @@ onMounted(async () => {
         router.replace("/movie/" + id.value)
     }
 
+    playFlag = true
+
 })
+
+// 只有在进入页面后第一次点击播放才执行
+const onPlay = () => {
+    if (playFlag) {
+        putMovieViewAPI(id.value)
+        playFlag = false
+    }
+}
 
 
 
@@ -102,20 +116,19 @@ onMounted(async () => {
                     <div v-if="videoPath"
                          class="video-box">
 
-
-                        <!--<video-player v-if="userStore.userInfo.token"
-                                      :src="videoPath"
+                        <video-player v-if="userStore.userInfo.token"
                                       :options="playerOptions"
                                       :volume="0.6"
-                                      controlsList="nodownload" />-->
-                        <video v-if="userStore.userInfo.token"
+                                      controlsList="nodownload"
+                                      @play="onPlay" />
+                        <!-- <video v-if="userStore.userInfo.token"
                                controls
                                autoplay
                                class="video"
                                controlslist="nodownload">
                             <source :src="videoPath"
-                                    type="video/mp4">
-                        </video>
+                                    type="video/mp4"> 
+                        </video>-->
                         <div v-else
                              class="video">
                             <div class="miss">
