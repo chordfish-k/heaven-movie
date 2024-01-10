@@ -22,6 +22,7 @@ public class RankTask {
     private RankProperties rankProperties;
 
     @Scheduled(cron = "${haven-movie.rank.cron}")
+    @PostConstruct
     public void rankDaily() {
         log.info("重新计算排行...");
         List<RankItemProperties> rankList = rankProperties.getRankList();

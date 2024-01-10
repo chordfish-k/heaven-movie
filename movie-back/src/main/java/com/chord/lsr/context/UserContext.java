@@ -6,12 +6,12 @@ package com.chord.lsr.context;
  * ThreadLocal为每个线程提供单独一份存储空间，具有线程隔离的效果，只有在线程内才能获取到对应的值，线程外则不能访问。
  */
 public class UserContext {
-    public static ThreadLocal<Integer> currentIdThreadLocal = new ThreadLocal<>();
+    public static ThreadLocal<Long> currentIdThreadLocal = new ThreadLocal<>();
 
-    public static void setCurrentId(Integer id) {
+    public static void setCurrentId(Long id) {
         currentIdThreadLocal.set(id);
     }
-    public static Integer getCurrentId() {
+    public static Long getCurrentId() {
         return currentIdThreadLocal.get();
     }
 

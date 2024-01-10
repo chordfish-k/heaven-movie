@@ -18,7 +18,8 @@ const movieItems = ref([])
 
 onMounted(() => {
     watch(data, (v) => {
-        movieItems.value = v.records
+        // console.log(v.records)
+        movieItems.value = v.records ? v.records : v
         movieItems.value.forEach((d) => {
             d.posterSrc = "//localhost:8080/img/" + d.id + ".jpg"
         })
@@ -35,9 +36,9 @@ onMounted(() => {
             <div class="module-title">
                 <span class="module-title-text">
                     {{ title }}
-                    （{{ data.total }}）
+                    （{{ data.total ? data.total : data.length }}）
                 </span>
-                <RouterLink v-if="maxCount >= 0 && allBtnLink != {}"
+                <RouterLink v-if="maxCount >= 0 && allBtnLink"
                             class="module-all-btn"
                             :to="allBtnLink">
                     <span class="module-all-btn-text">全部</span>

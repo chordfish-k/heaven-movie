@@ -1,7 +1,7 @@
 <script setup>
 import router from '@/router';
-import { ref, toRefs, watchEffect, onMounted, computed, h } from 'vue';
-import { getMovieByIdAPI, putMovieViewAPI } from '@/apis/movie'
+import { ref, toRefs, onMounted, computed, h } from 'vue';
+import { getMovieByIdAPI } from '@/apis/movie'
 import { getMovieLikeAPI, putMovieLikeAPI } from '@/apis/like'
 import { ElMessage } from 'element-plus';
 import { useUserStore } from '@/stores/userStore';
@@ -25,7 +25,6 @@ const getMovieData = async () => {
     // console.log(id.value)
     const res = await getMovieByIdAPI(id.value)
     info.value = res.data
-    console.log(res.data)
 
     if (userStore.userInfo.token) {
         const lres = await getMovieLikeAPI(id.value)
@@ -71,7 +70,6 @@ const onPlayClicked = () => {
         })
     }
     else {
-        putMovieViewAPI(id.value)
         router.push("/play/" + id.value)
     }
 }

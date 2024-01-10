@@ -33,7 +33,7 @@ export const postUserRegisterAPI = (registerDTO) => {
  */
 export const putUserUpgradeAPI = () => {
     return http({
-        url: '/user/user/upgrade',
+        url: '/user/user/privilege/upgrade',
         method: 'PUT',
     });
 }
@@ -44,7 +44,7 @@ export const putUserUpgradeAPI = () => {
  */
 export const putUserDowngradeAPI = () => {
     return http({
-        url: '/user/user/downgrade',
+        url: '/user/user/privilege/downgrade',
         method: 'PUT',
     });
 }

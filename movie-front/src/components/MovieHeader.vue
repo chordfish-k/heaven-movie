@@ -3,7 +3,6 @@ import { computed, onMounted, ref } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import router from '@/router';
 import { useUserStore } from '@/stores/userStore';
-import { putUserUpgradeAPI, putUserDowngradeAPI } from '@/apis/user'
 import { getMovieQueryAPI } from '@/apis/movie';
 import { useRoute } from 'vue-router';
 
@@ -39,21 +38,7 @@ const logout = () => {
     userStore.clearUserInfo()
 }
 
-// 升级vip
-const upgradeVIP = async () => {
-    const res = await putUserUpgradeAPI()
-    if (res.code == 1) {
-        userStore.getUserInfo(userStore.loginParams)
-    }
-}
 
-// 退出vip
-const downgradeVIP = async () => {
-    const res = await putUserDowngradeAPI()
-    if (res.code == 1) {
-        userStore.getUserInfo(userStore.loginParams)
-    }
-}
 
 // 定义搜索事件
 const emits = defineEmits(['handleSearch'])
@@ -92,8 +77,13 @@ const onSearchClicked = () => {
                     </template>
                 </el-input>
             </div>
-            <div class="header-userInfo">
-                <el-popconfirm v-if="!userStore.userInfo.vip"
+            <div class="header-userInfo"
+                 :class="{ vip: userStore.userInfo.vip }">
+                <RouterLink to="/user">
+                    {{ userStore.userInfo.name }}
+                </RouterLink>
+
+                <!-- <el-popconfirm v-if="!userStore.userInfo.vip"
                                @confirm="upgradeVIP"
                                title="是否开通VIP?"
                                confirm-button-text="确认"
@@ -111,7 +101,7 @@ const onSearchClicked = () => {
                     <template #reference>
                         {{ userStore.userInfo.name }}
                     </template>
-                </el-popconfirm>
+                </el-popconfirm> -->
 
             </div>
             <div class="header-login">
@@ -223,9 +213,17 @@ const onSearchClicked = () => {
 
 .header-userInfo {
     margin: auto 0;
+    padding-left: 20px;
+    padding-right: 20px;
     margin-right: 10px;
     text-align: right;
+    line-height: 60px;
     cursor: pointer;
+}
+
+.header-userInfo:hover {
+    background-color: #535353;
+    border-radius: 3px;
 }
 
 .header-login {
@@ -246,5 +244,10 @@ const onSearchClicked = () => {
     text-decoration: none;
     color: orange;
     text-wrap: nowrap;
+}
+
+.vip,
+.vip a {
+    color: red;
 }
 </style>

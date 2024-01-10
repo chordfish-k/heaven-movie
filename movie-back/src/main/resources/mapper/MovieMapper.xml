@@ -50,4 +50,10 @@
             <if test="vip!=null&amp;&amp;vip!=0">and vip = #{vip}</if>
         </where>
     </select>
+    <select id="selectPageBatchIds" resultType="com.chord.lsr.pojo.entity.Movie">
+        select * from movie where id in 
+        <foreach collection="historyIds" item="k" open="(" close=")" separator=",">
+            #{k}
+        </foreach>
+    </select>
 </mapper>

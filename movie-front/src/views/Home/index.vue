@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineProps, onMounted, ref, toRefs } from 'vue';
+import { computed, onMounted, ref, toRefs } from 'vue';
 import { getMovieQueryAPI } from '@/apis/movie'
 
 const title = ref("正在热映")

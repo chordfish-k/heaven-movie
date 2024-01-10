@@ -11,7 +11,7 @@ const ruleFormRef = ref()
 
 // 登录表单数据
 const loginDTO = ref({
-    mail: 'b@abc.com',
+    mail: 'admin@abc.com',
     password: 'bbbbbb',
 })
 
@@ -72,7 +72,7 @@ const onLogin = async (loginDTO) => {
         <div class="board">
 
             <div class="title">
-                狗眼<span class="strong">电影</span>
+                天堂<span class="strong">电影</span>
             </div>
 
             <el-form class="form"

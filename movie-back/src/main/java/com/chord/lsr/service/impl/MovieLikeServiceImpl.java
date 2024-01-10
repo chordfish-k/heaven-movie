@@ -18,7 +18,7 @@ public class MovieLikeServiceImpl implements MovieLikeService {
     private MovieLikeMapper movieLikeMapper;
 
     public void likeReverse(Long movieId) {
-        Integer userId = UserContext.getCurrentId();
+        Long userId = UserContext.getCurrentId();
         QueryWrapper<MovieLike> qw = new QueryWrapper<>();
         qw.eq("movie_id", movieId)
                 .eq("user_id", userId)
@@ -46,7 +46,7 @@ public class MovieLikeServiceImpl implements MovieLikeService {
     }
 
     public Integer isLike(Long movieId) {
-        Integer userId = UserContext.getCurrentId();
+        Long userId = UserContext.getCurrentId();
         QueryWrapper<MovieLike> qw = new QueryWrapper<>();
         qw.eq("movie_id", movieId)
                 .eq("user_id", userId)

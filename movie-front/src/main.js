@@ -11,6 +11,10 @@ import '@/styles/common.scss'
 
 // 引入全局组件插件
 import { componentPlugin } from '@/components'
+ 
+// 导入视频播放组件
+import VueVideoPlayer from '@videojs-player/vue'
+import 'video.js/dist/video-js.css'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -20,6 +24,8 @@ pinia.use(piniaPluginPersistedstate)
 app.use(pinia)
 app.use(router)
 app.use(componentPlugin)
+// 视频播放组件
+app.use(VueVideoPlayer)
 
 // 注册图标
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

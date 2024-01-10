@@ -13,5 +13,5 @@ public interface UserService {
 
     void downgrade();
 
-    User getById(Integer id);
+    User getById(Long id);
 }

@@ -17,6 +17,6 @@ public class MovieLike implements Serializable {
     @TableId(type=IdType.AUTO)
     private Integer id;
     private Long movieId;
-    private Integer userId;
+    private Long userId;
     private Integer likeFlag;
 }

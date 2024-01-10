@@ -1,9 +1,11 @@
 <script setup>
-import { ref, toRefs, watchEffect, onMounted, computed, h } from 'vue';
+import { ref, toRefs, onMounted, computed, h, onBeforeUnmount, reactive } from 'vue';
 import { getMovieByIdAPI } from '@/apis/movie'
+import { getMovieFileNameByIdAPI } from '@/apis/video'
 import { ElMessage } from 'element-plus';
 import router from '@/router';
 import { useUserStore } from '@/stores/userStore';
+
 
 const userStore = useUserStore()
 
@@ -13,17 +15,43 @@ const props = defineProps({
 
 const { id } = toRefs(props)
 
+const playerOptions = ref({
+    // height: 200,
+    // width: document.documentElement.clientWidth, //播放器宽度
+    // src: '',
+    playbackRates: [0.5, 1.0, 1.5, 2.0], // 播放速度
+    autoplay: 'any', // 如果true,浏览器准备好时开始回放。
+    muted: false, // 静音
+    loop: true, // 导致视频一结束就重新开始。
+    preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+    language: 'zh-CN',
+    aspectRatio: '16:9', // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+    fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+    notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
+    controls: true,
+    controlBar: {
+        timeDivider: true,
+        durationDisplay: true,
+        remainingTimeDisplay: false,
+        fullscreenToggle: true // 全屏按钮
+    },
+    controlsList: 'nodownload'
+})
+
+
 const info = ref({})
 const videoPath = ref("")
 
 // 查询该电影信息
 const getMovieData = async () => {
-    console.log(id.value)
     const res = await getMovieByIdAPI(id.value)
     info.value = res.data
-    console.log(res.data)
-    videoPath.value = "//localhost:8080/user/video/" + id.value + "?token=" + userStore.userInfo.token
+    // videoPath.value = "//localhost:8080/v/rick.mp4"// + id.value + "?token=" + userStore.userInfo.token
+    // videoPath.value = `//localhost:8080/v/${id.value}.mp4`
+    const lres = await getMovieFileNameByIdAPI(id.value)
+    videoPath.value = `//localhost:8080/v/${lres.data.src}`
 }
+
 
 // 简介
 const splitedBrief = computed(() => {
@@ -32,7 +60,7 @@ const splitedBrief = computed(() => {
 
 onMounted(async () => {
     await getMovieData()
-    // 检测是否为vip用户
+
     if (info.value.vip == 1 && userStore.userInfo.vip == 0) {
         ElMessage({
             message: h('p', null, [
@@ -43,7 +71,10 @@ onMounted(async () => {
         })
         router.replace("/movie/" + id.value)
     }
+
 })
+
+
 
 </script>
 
@@ -62,15 +93,23 @@ onMounted(async () => {
                     </div>
                     <div v-if="videoPath"
                          class="video-box">
-                        <iframe v-if="userStore.userInfo.token"
-                                :src="videoPath"
-                                scrolling="no"
-                                border="0"
-                                frameborder="no"
-                                framespacing="0"
-                                allowfullscreen="true"
-                                class="video">
-                        </iframe>
+
+                        <video-player v-if="userStore.userInfo.token"
+                                      :src="videoPath"
+                                      :options="playerOptions"
+                                      :volume="0.6"
+                                      controlsList="nodownload" />
+                        <!-- <video v-if="userStore.userInfo.token"
+                               scrolling="no"
+                               border="0"
+                               frameborder="no"
+                               framespacing="0"
+                               allowfullscreen="true"
+                               class="video"
+                               @play="onPlay">
+                            <source :src="videoPath"
+                                    type="video/mp4">
+                        </video> -->
                         <div v-else
                              class="video">
                             <div class="miss">

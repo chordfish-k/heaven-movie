@@ -6,6 +6,7 @@ import RegisterView from '@/views/Register/index.vue'
 import MovieView from '@/views/Movie/index.vue'
 import PlayView from '@/views/Play/index.vue'
 import RankView from '@/views/Rank/index.vue'
+import UserView from '@/views/User/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +37,11 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: RegisterView
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: UserView
     },
     {
       path: '/movie/:id',

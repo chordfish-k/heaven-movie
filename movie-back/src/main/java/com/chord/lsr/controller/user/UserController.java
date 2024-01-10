@@ -71,7 +71,7 @@ public class UserController {
      * 升级VIP
      * @return
      */
-    @PutMapping("/upgrade")
+    @PutMapping("/privilege/upgrade")
     public Result upgrade() {
         userService.upgrade();
         return Result.success();
@@ -81,7 +81,7 @@ public class UserController {
      * 退出VIP
      * @return
      */
-    @PutMapping("/downgrade")
+    @PutMapping("/privilege/downgrade")
     public Result downgrade() {
         userService.downgrade();
         return Result.success();

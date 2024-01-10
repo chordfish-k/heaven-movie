@@ -25,4 +25,6 @@ public interface MovieMapper extends BaseMapper<Movie> {
     List<Movie> queryOnHot(MovieQueryDTO movieQueryDTO);
 
     List<Movie> query(MovieQueryDTO movieQueryDTO);
+
+    Page<Movie> selectPageBatchIds(List<Long> historyIds);
 }

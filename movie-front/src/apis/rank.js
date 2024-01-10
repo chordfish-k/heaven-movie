@@ -3,12 +3,11 @@ import {http} from '@/utils/http'
 /**
  * 查询排行榜
  * @param {*} rankId 
- * @param {*} count 
  * @returns 
  */
-export const getRankAPI = (rankId, count) => {
+export const getRankAPI = (rankId) => {
     return http({
-        url: `user/rank?rankId=${rankId}&count=${count}`,
+        url: `user/rank?rankId=${rankId}`,
         method: "GET"
     })
 }

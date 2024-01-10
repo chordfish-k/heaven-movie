@@ -25,16 +25,3 @@ export const getMovieQueryAPI = (queryDTO) => {
         params: queryDTO
     })
 }
-
-/**
- * 增加观看次数
- * @param {*} id 
- * @returns 
- */
-export const putMovieViewAPI = (id) => {
-    // console.log("getMovieQueryAPI",queryDTO)
-    return http({
-        url: 'user/movie/'+id,
-        method: "PUT",
-    })
-}

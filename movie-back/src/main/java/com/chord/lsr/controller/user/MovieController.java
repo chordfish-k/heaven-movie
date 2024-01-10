@@ -52,7 +52,7 @@ public class MovieController {
         return Result.success(page);
     }
 
-    @PutMapping("/{id}")
+//    @PutMapping("/{id}")
     @Transactional
     public Result view(@PathVariable Long id) {
         // 该视频观看次数+1
