@@ -7,7 +7,7 @@ import MovieView from '@/views/Movie/index.vue'
 import PlayView from '@/views/Play/index.vue'
 import RankView from '@/views/Rank/index.vue'
 import UserView from '@/views/User/index.vue'
-
+import adminView from '@/views/Admin/index.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -55,6 +55,11 @@ const router = createRouter({
       props: true,
       component: PlayView
     },
+    {
+        path: '/admin',
+        name: 'admin',
+        component: adminView
+    }
   ]
 })
 
