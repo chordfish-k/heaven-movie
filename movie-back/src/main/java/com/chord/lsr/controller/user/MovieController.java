@@ -8,11 +8,10 @@ import com.chord.lsr.pojo.entity.Movie;
 import com.chord.lsr.pojo.entity.User;
 import com.chord.lsr.pojo.result.PageResult;
 import com.chord.lsr.pojo.result.Result;
+import com.chord.lsr.pojo.vo.CategoryVO;
 import com.chord.lsr.properties.JwtProperties;
 import com.chord.lsr.properties.MediaProperties;
-import com.chord.lsr.service.MovieService;
-import com.chord.lsr.service.UserHistoryService;
-import com.chord.lsr.service.UserService;
+import com.chord.lsr.service.*;
 import com.chord.lsr.util.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
@@ -35,14 +34,17 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
     @Autowired
+    private MovieLikeService movieLikeService;
+    @Autowired
     private UserHistoryService userHistoryService;
-
     @Autowired
     private MediaProperties mediaProperties;
     @Autowired
     private JwtProperties jwtProperties;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CategoryService categoryService;
     @Autowired
     private NonStaticResourceHttpRequestHandler nonStaticResourceHttpRequestHandler;
 
@@ -99,6 +101,42 @@ public class MovieController {
         userHistoryService.insertHistory(movie.getId());
         return Result.success();
     }
+
+
+    /**
+     * 查询用户是否对某电影点过赞
+     * @param id
+     * @return
+     */
+    @GetMapping("/like/{id}")
+    public Result<Integer> isLike(@PathVariable Long id) {
+        log.info("查询用户是否对某电影点过赞：{}, {}", id, UserContext.getCurrentId());
+        return Result.success(UserContext.getCurrentId() != null ? movieLikeService.isLike(id) : 0);
+    }
+
+    /**
+     * 反转某用户对某电影的点赞
+     * @param id
+     * @return
+     */
+    @PutMapping("/like/{id}")
+    public Result like(@PathVariable Long id) {
+        // 该视频观点赞数+1
+        movieLikeService.likeReverse(id);
+        return Result.success();
+    }
+
+    /**
+     * 查询电影分类列表
+     * @param type
+     * @return
+     */
+    @GetMapping("/category")
+    public Result<CategoryVO> list(Integer type) {
+        CategoryVO categoryVO = categoryService.list(type);
+        return Result.success(categoryVO);
+    }
+
 
     /**
      * 获取视频

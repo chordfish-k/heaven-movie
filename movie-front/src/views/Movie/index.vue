@@ -1,8 +1,7 @@
 <script setup>
 import router from '@/router';
 import { ref, toRefs, onMounted, computed, h } from 'vue';
-import { getMovieByIdAPI } from '@/apis/movie'
-import { getMovieLikeAPI, putMovieLikeAPI } from '@/apis/like'
+import { getMovieByIdAPI, getMovieLikeAPI, putMovieLikeAPI } from '@/apis/movie'
 import { ElMessage } from 'element-plus';
 import { useUserStore } from '@/stores/userStore';
 // 修复该页提示信息出现在底部的问题

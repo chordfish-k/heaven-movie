@@ -39,7 +39,7 @@ export const putMovieViewAPI = (movieId) => {
 
 
 /**
- * 根据id查询电影文件名
+ * 根据id获取电影视频流
  * @returns 
  */
 export const getMovieBlobByIdAPI = (id, token) => {
@@ -52,5 +52,44 @@ export const getMovieBlobByIdAPI = (id, token) => {
             "token": token,
             "Content-Type":"video/mp4"
         }
+    })
+}
+
+
+/**
+ * 获取该电影是否已点赞
+ * @param {*} movieId 
+ * @returns 
+ */
+export const getMovieLikeAPI = (movieId) => {
+    return http({
+        url: '/user/movie/like/' + movieId,
+        method: 'GET',
+    });
+}
+
+
+/**
+ * 反转该电影的点赞
+ * @param {*} movieId 
+ * @returns 
+ */
+export const putMovieLikeAPI = (movieId) => {
+    return http({
+        url: '/user/movie/like/' + movieId,
+        method: 'PUT',
+    });
+}
+
+
+
+/**
+ * 根据分类类型id查询分类列表
+ * @returns 
+ */
+export const getCategoryByTypeAPI = (id) => {
+    return http({
+        url: `user/movie/category?type=${id}`,
+        method: "GET",
     })
 }

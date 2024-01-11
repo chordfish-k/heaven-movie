@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { getCategoryByTypeAPI } from '@/apis/category'
+import { getCategoryByTypeAPI } from '@/apis/movie'
 import { useCategoryStore } from '@/stores/cateStore';
 
 const route = useRoute()
@@ -28,31 +28,6 @@ const getCategoryData = async () => {
 const onTabChange = (lineName, tabIndex) => {
     cats.value[lineName].active = tabIndex
     let content = cats.value[lineName].tags[cats.value[lineName].active]
-    // if (lineName == list[2]) {
-    //     console.log(content)
-    //     if (String(content).match(/^\d{4}$/)) {
-    //         console.log('A')
-    //         content = content + '-' + content;
-    //     }
-    //     else if (String(content).endsWith("年代")) {
-    //         console.log('B')
-    //         let n = parseInt(content[0])
-    //         let begin = 1900 + n * 10;
-    //         let end = 1900 + (n + 1) * 10;
-    //         content = `${begin}-${end}`
-    //     }
-    //     else if (String(content) === '更早') {
-    //         console.log('C')
-    //         content = '1000-1969'
-    //     }
-    //     else if (content == '未上映') {
-    //         console.log('D')
-    //         content = (new Date().getFullYear() + 1) + "-9999"
-    //     } else {
-    //         console.log('E')
-    //     }
-    // }
-    // if (content == '全部') content = undefined
 
     emits("tab-change", lineName, content, cats.value[lineName].active)
 }

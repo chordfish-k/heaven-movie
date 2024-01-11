@@ -46,8 +46,8 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
         registry.addInterceptor(jwtTokenInterceptor)
                 .addPathPatterns("/user/user/privilege/**")
                 .addPathPatterns("/user/history")
-                .addPathPatterns("/user/video/getUrl/**")
-                .addPathPatterns("/user/like/**")
+                .addPathPatterns("/user/movie/get/**")
+                .addPathPatterns("/user/movie/like/**")
                 .addPathPatterns("/user/movie/view/**");
     }
 
