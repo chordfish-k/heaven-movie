@@ -1,6 +1,6 @@
 package com.chord.lsr.interceptor;
 
-import com.chord.lsr.constant.JwtClaimsConstant;
+import constant.JwtClaimsConstant;
 import com.chord.lsr.context.UserContext;
 import com.chord.lsr.properties.JwtProperties;
 import com.chord.lsr.util.JwtUtil;

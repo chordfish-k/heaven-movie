@@ -1,7 +1,7 @@
 package com.chord.lsr.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.chord.lsr.constant.MessageConstant;
+import constant.MessageConstant;
 import com.chord.lsr.context.UserContext;
 import com.chord.lsr.exception.AccountNotFoundException;
 import com.chord.lsr.exception.PasswordErrorException;
@@ -13,7 +13,6 @@ import com.chord.lsr.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 @Service

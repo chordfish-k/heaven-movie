@@ -1,6 +1,6 @@
 package com.chord.lsr.handler;
 
-import com.chord.lsr.constant.MessageConstant;
+import constant.MessageConstant;
 import com.chord.lsr.exception.BaseException;
 import com.chord.lsr.pojo.result.Result;
 import lombok.extern.slf4j.Slf4j;

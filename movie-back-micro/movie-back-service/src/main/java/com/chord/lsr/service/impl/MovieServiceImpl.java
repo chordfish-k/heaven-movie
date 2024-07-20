@@ -1,10 +1,9 @@
 package com.chord.lsr.service.impl;
 
-import com.chord.lsr.constant.MessageConstant;
-import com.chord.lsr.constant.RankIdConstant;
-import com.chord.lsr.constant.SortIdConstant;
+import constant.MessageConstant;
+import constant.RankIdConstant;
+import constant.SortIdConstant;
 import com.chord.lsr.exception.NoSuchMovieException;
-import com.chord.lsr.mapper.MovieLikeMapper;
 import com.chord.lsr.mapper.MovieMapper;
 import com.chord.lsr.pojo.dto.MovieQueryDTO;
 import com.chord.lsr.pojo.entity.Movie;

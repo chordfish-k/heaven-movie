@@ -1,4 +1,4 @@
-package com.chord.lsr.constant;
+package constant;
 
 public class MovieStatusConstant {
     public static final Integer COMING_SOON = 0;

@@ -1,6 +1,6 @@
 package com.chord.lsr.controller.user;
 
-import com.chord.lsr.constant.JwtClaimsConstant;
+import constant.JwtClaimsConstant;
 import com.chord.lsr.context.UserContext;
 import com.chord.lsr.handler.NonStaticResourceHttpRequestHandler;
 import com.chord.lsr.pojo.dto.MovieQueryDTO;

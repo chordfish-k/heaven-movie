@@ -1,4 +1,4 @@
-package com.chord.lsr.constant;
+package constant;
 
 
 public class RankIdConstant {

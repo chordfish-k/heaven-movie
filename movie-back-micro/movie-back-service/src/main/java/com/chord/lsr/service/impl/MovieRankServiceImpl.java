@@ -2,7 +2,6 @@ package com.chord.lsr.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.chord.lsr.constant.RankIdConstant;
 import com.chord.lsr.enums.RankId;
 import com.chord.lsr.mapper.MovieMapper;
 import com.chord.lsr.mapper.MovieRankMapper;
@@ -14,12 +13,10 @@ import com.chord.lsr.properties.RankProperties;
 import com.chord.lsr.service.MovieRankService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service

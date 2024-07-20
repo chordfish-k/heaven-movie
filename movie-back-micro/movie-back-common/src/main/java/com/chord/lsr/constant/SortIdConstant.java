@@ -1,4 +1,4 @@
-package com.chord.lsr.constant;
+package constant;
 
 public class SortIdConstant {
     public static final Integer BY_SCORE = 0;

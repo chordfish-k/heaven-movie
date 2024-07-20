@@ -2,6 +2,13 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: movie-back-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 数据库用户名

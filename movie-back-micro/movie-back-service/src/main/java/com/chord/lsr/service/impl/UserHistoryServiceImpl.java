@@ -1,17 +1,12 @@
 package com.chord.lsr.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.chord.lsr.context.UserContext;
 import com.chord.lsr.mapper.MovieMapper;
 import com.chord.lsr.mapper.UserHistoryMapper;
-import com.chord.lsr.pojo.dto.UserHistoryQueryDTO;
 import com.chord.lsr.pojo.entity.Movie;
 import com.chord.lsr.pojo.entity.UserHistory;
-import com.chord.lsr.pojo.result.PageResult;
 import com.chord.lsr.service.UserHistoryService;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

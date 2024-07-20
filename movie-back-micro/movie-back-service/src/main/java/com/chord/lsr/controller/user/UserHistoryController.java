@@ -1,10 +1,6 @@
 package com.chord.lsr.controller.user;
 
-import com.chord.lsr.context.UserContext;
-import com.chord.lsr.mapper.UserHistoryMapper;
-import com.chord.lsr.pojo.dto.UserHistoryQueryDTO;
 import com.chord.lsr.pojo.entity.Movie;
-import com.chord.lsr.pojo.result.PageResult;
 import com.chord.lsr.pojo.result.Result;
 import com.chord.lsr.service.UserHistoryService;
 import lombok.extern.slf4j.Slf4j;

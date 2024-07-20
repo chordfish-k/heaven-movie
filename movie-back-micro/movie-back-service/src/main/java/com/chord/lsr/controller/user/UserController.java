@@ -1,6 +1,6 @@
 package com.chord.lsr.controller.user;
 
-import com.chord.lsr.constant.JwtClaimsConstant;
+import constant.JwtClaimsConstant;
 import com.chord.lsr.pojo.dto.UserLoginDTO;
 import com.chord.lsr.pojo.dto.UserRegisterDTO;
 import com.chord.lsr.pojo.entity.User;
@@ -15,7 +15,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController

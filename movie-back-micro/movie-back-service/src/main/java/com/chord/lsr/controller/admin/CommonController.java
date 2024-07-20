@@ -1,6 +1,6 @@
 package com.chord.lsr.controller.admin;
 
-import com.chord.lsr.constant.MessageConstant;
+import constant.MessageConstant;
 import com.chord.lsr.pojo.result.Result;
 import com.chord.lsr.properties.MediaProperties;
 import lombok.extern.slf4j.Slf4j;
