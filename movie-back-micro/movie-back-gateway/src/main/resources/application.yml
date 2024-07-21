@@ -1,0 +1,72 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    web-application-type: reactive
+  application:
+    name: movie-gateway
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+    gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns: "*"  # 允许的前端域名
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+            allowedHeaders:
+              - "*"  # 或者具体的头部
+            allowCredentials: true
+      routes:
+        - id: movie # 路由规则id，自定义，唯一
+          uri: lb://movie-movie # 路由的目标服务，lb代表负载均衡，会从注册中心拉取服务列表
+          predicates: # 路由断言，判断当前请求是否符合当前规则，符合则路由到目标服务
+            - Path=/user/movie/**,/user/rank/**,/img/**,/v/** # 这里是以请求路径作为判断规则
+        - id: user
+          uri: lb://movie-user
+          predicates:
+            - Path=/user/user/**,/user/history/**
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 数据库用户名
+    username: root
+    # 用户密码
+    password: 123456
+    # 数据库访问路径，其中 '///' 是 '//ip:端口号/' 为 'localhost:3306/' 的简写
+    url: jdbc:mysql:///movie?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+
+haven-movie:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    secret-key: boynextdoor
+    # 设置jwt过期时间
+    ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    token-name: token
+  auth:
+    excludePaths: # 无需登录校验的路径
+      - /user/user/login/**
+      - /user/user/register/**
+      - /user/movie/y/**
+      - /user/rank/**
+      - /img/**
+      - /v/**
+
+logging:
+  file:
+    name: ${user.dir}/log/log.log
+  level:
+    com:
+      chord:
+        lsr:
+          mapper: info
+          service: info
+          controller: info
+

@@ -13,6 +13,7 @@
         <module>movie-back-common</module>
         <module>movie-back-service</module>
         <module>movie-back-user</module>
+        <module>movie-back-gateway</module>
     </modules>
 
     <parent>

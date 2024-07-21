@@ -1,9 +1,9 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
-    name: service
+    name: movie-movie
   cloud:
     nacos:
       discovery:
@@ -18,6 +18,9 @@ spring:
     # 数据库访问路径，其中 '///' 是 '//ip:端口号/' 为 'localhost:3306/' 的简写
     url: jdbc:mysql:///movie?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
 
+feign:
+  okhttp:
+    enabled: true # 开启OKHttp功能
 
 mybatis-plus:
   configuration:
