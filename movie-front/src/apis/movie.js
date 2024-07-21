@@ -7,7 +7,7 @@ import axios from 'axios'
  */
 export const getMovieByIdAPI = (id) => {
     return http({
-        url: `user/movie/${id}`,
+        url: `user/movie/y/${id}`,
         method: "GET",
     })
 }
@@ -19,7 +19,7 @@ export const getMovieByIdAPI = (id) => {
  */
 export const getMovieQueryAPI = (queryDTO) => {
     return http({
-        url: 'user/movie',
+        url: 'user/movie/y',
         method: "GET",
         params: queryDTO
     })
@@ -32,7 +32,7 @@ export const getMovieQueryAPI = (queryDTO) => {
  */
 export const putMovieViewAPI = (movieId) => {
     return http({
-        url: `user/movie/view/${movieId}`,
+        url: `user/movie/n/view/${movieId}`,
         method: "PUT",
     })
 }
@@ -43,7 +43,7 @@ export const putMovieViewAPI = (movieId) => {
  * @returns 
  */
 export const getMovieBlobByIdAPI = (id, token) => {
-    const url = `${baseURL}/user/movie/get/${id}?token=${token}`
+    const url = `${baseURL}/user/movie/n/get/${id}?token=${token}`
     return axios({
         url,
         method: "GET",
@@ -63,7 +63,7 @@ export const getMovieBlobByIdAPI = (id, token) => {
  */
 export const getMovieLikeAPI = (movieId) => {
     return http({
-        url: '/user/movie/like/' + movieId,
+        url: '/user/movie/n/like/' + movieId,
         method: 'GET',
     });
 }
@@ -76,7 +76,7 @@ export const getMovieLikeAPI = (movieId) => {
  */
 export const putMovieLikeAPI = (movieId) => {
     return http({
-        url: '/user/movie/like/' + movieId,
+        url: '/user/movie/n/like/' + movieId,
         method: 'PUT',
     });
 }
@@ -89,7 +89,7 @@ export const putMovieLikeAPI = (movieId) => {
  */
 export const getCategoryByTypeAPI = (id) => {
     return http({
-        url: `user/movie/category?type=${id}`,
+        url: `user/movie/y/category?type=${id}`,
         method: "GET",
     })
 }

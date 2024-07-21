@@ -85,4 +85,15 @@ public class UserController {
         userService.downgrade();
         return Result.success();
     }
+
+    /**
+     * 根据id获取用户
+     * @param id
+     * @return
+     */
+    @GetMapping("/getById")
+    public Result<User> getById(@RequestParam Long id) {
+        log.info("查询用户: {}", id);
+        return Result.success(userService.getById(id));
+    }
 }

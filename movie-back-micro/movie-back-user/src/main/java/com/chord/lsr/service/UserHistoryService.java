@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface UserHistoryService {
     List<Movie> getHistory();
-    void insertHistory(Long movieId);
+    void insertHistory(Long userId, Long movieId);
 }

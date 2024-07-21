@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.chord.lsr.config.RedisConfiguration,\
+  com.chord.lsr.config.WebMvcConfiguration

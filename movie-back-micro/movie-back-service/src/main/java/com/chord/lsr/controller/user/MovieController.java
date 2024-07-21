@@ -1,5 +1,7 @@
 package com.chord.lsr.controller.user;
 
+import cn.hutool.core.util.StrUtil;
+import com.chord.lsr.client.UserClient;
 import constant.JwtClaimsConstant;
 import com.chord.lsr.context.UserContext;
 import com.chord.lsr.handler.NonStaticResourceHttpRequestHandler;
@@ -36,13 +38,11 @@ public class MovieController {
     @Autowired
     private MovieLikeService movieLikeService;
     @Autowired
-    private UserHistoryService userHistoryService;
-    @Autowired
     private MediaProperties mediaProperties;
     @Autowired
     private JwtProperties jwtProperties;
     @Autowired
-    private UserService userService;
+    private UserClient userService;
     @Autowired
     private CategoryService categoryService;
     @Autowired
@@ -53,8 +53,9 @@ public class MovieController {
      * @param id
      * @return
      */
-    @GetMapping("/{id}")
+    @GetMapping("/y/{id}")
     public Result<Movie> getById(@PathVariable Long id) {
+        System.out.println(mediaProperties.imagePath);
         Movie movie = movieService.getById(id);
         return Result.success(movie);
     }
@@ -65,7 +66,7 @@ public class MovieController {
      * @param currentPage
      * @return
      */
-    @GetMapping("/page/{pageSize}/{currentPage}")
+    @GetMapping("/y/page/{pageSize}/{currentPage}")
     public Result<PageResult> queryPage(@PathVariable Integer pageSize, @PathVariable Integer currentPage) {
         PageResult page = movieService.queryPage(currentPage, pageSize);
         return Result.success(page);
@@ -75,7 +76,7 @@ public class MovieController {
     /**
      * 条件查询电影
      */
-    @GetMapping
+    @GetMapping("/y")
     public Result<PageResult> query(MovieQueryDTO movieQueryDTO) {
         log.info("查询电影：{}", movieQueryDTO);
         PageResult page = movieService.query(movieQueryDTO);
@@ -87,7 +88,7 @@ public class MovieController {
      * @param id
      * @return
      */
-    @PutMapping("/view/{id}")
+    @PutMapping("/n/view/{id}")
     @Transactional
     public Result view(@PathVariable Long id) {
         // 该视频观看次数+1
@@ -98,7 +99,7 @@ public class MovieController {
                 .build();
         movieService.updateById(movieUpdated);
         // 添加用户的观影记录
-        userHistoryService.insertHistory(movie.getId());
+        userService.insertHistory(UserContext.getCurrentId(), movie.getId());
         return Result.success();
     }
 
@@ -108,7 +109,7 @@ public class MovieController {
      * @param id
      * @return
      */
-    @GetMapping("/like/{id}")
+    @GetMapping("/n/like/{id}")
     public Result<Integer> isLike(@PathVariable Long id) {
         log.info("查询用户是否对某电影点过赞：{}, {}", id, UserContext.getCurrentId());
         return Result.success(UserContext.getCurrentId() != null ? movieLikeService.isLike(id) : 0);
@@ -119,7 +120,7 @@ public class MovieController {
      * @param id
      * @return
      */
-    @PutMapping("/like/{id}")
+    @PutMapping("/n/like/{id}")
     public Result like(@PathVariable Long id) {
         // 该视频观点赞数+1
         movieLikeService.likeReverse(id);
@@ -131,7 +132,7 @@ public class MovieController {
      * @param type
      * @return
      */
-    @GetMapping("/category")
+    @GetMapping("/y/category")
     public Result<CategoryVO> list(Integer type) {
         CategoryVO categoryVO = categoryService.list(type);
         return Result.success(categoryVO);
@@ -145,23 +146,24 @@ public class MovieController {
      * @param response
      * @throws Exception
      */
-    @GetMapping("/get/{id}")
+    @GetMapping("/n/get/{id}")
     @Transactional
     public void videoPreview(@PathVariable Long id, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String token = request.getHeader(jwtProperties.getTokenName());
-        log.info("获取视频流：{}, {}", id, token);
-        //校验令牌
-        try {
-            log.info("jwt校验:{}", token);
-            Claims claims = JwtUtil.parseJWT(jwtProperties.getSecretKey(), token);
-            Long userId = Long.valueOf(claims.get(JwtClaimsConstant.USER_ID).toString());
-            // 保存id数据
+        log.info("获取视频流：{}", id);
+
+        // 1.获取请求头中的用户信息
+        String userInfo = request.getHeader("user-info");
+        System.out.println("userinfo: " + userInfo);
+        // 2.判断是否为空
+        if (StrUtil.isNotBlank(userInfo)) {
+            // 不为空，保存到ThreadLocal
+            Long userId = Long.valueOf(userInfo);
             UserContext.setCurrentId(userId);
 
             // 查询员工和电影是否为vip
             Movie movie = movieService.getById(id);
             Integer vipMovie = movie.getVip();
-            User user = userService.getById(userId);
+            User user = userService.getById(userId).getData();
             Integer vipUser = user.getVip();
             log.info("当前用户id：{}", userId);
             log.info("电影vip:{}, 用户vip:{}", vipMovie, vipUser);
@@ -190,7 +192,7 @@ public class MovieController {
             nonStaticResourceHttpRequestHandler.handleRequest(request, response);
 
 
-        } catch (Exception ex) {
+        } else {
             //token不通过，响应401状态码
             response.setStatus(401);
         }

@@ -39,7 +39,7 @@ const router = createRouter({
       component: RegisterView
     },
     {
-      path: '/user',
+      path: '/u',
       name: 'user',
       component: UserView
     },
@@ -56,9 +56,9 @@ const router = createRouter({
       component: PlayView
     },
     {
-        path: '/admin',
-        name: 'admin',
-        component: adminView
+      path: '/admin',
+      name: 'admin',
+      component: adminView
     }
   ]
 })

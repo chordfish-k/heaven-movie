@@ -79,7 +79,7 @@ const onSearchClicked = () => {
             </div>
             <div class="header-userInfo"
                  :class="{ vip: userStore.userInfo.vip }">
-                <RouterLink to="/user">
+                <RouterLink to="/u">
                     {{ userStore.userInfo.name }}
                 </RouterLink>
 
@@ -132,122 +132,123 @@ const onSearchClicked = () => {
 </template>
 
 
-<style lang="scss" scoped>
-.header {
-    width: 100vw;
-    height: 60px;
-    background-color: rgb(16, 16, 16);
-    border-bottom: 1px solid rgb(31, 31, 31);
-    box-shadow: 1px 1px 2px rgb(31, 31, 31);
-    display: flex;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    flex-wrap: nowrap;
+<style lang="scss"
+       scoped>
+    .header {
+        width: 100vw;
+        height: 60px;
+        background-color: rgb(16, 16, 16);
+        border-bottom: 1px solid rgb(31, 31, 31);
+        box-shadow: 1px 1px 2px rgb(31, 31, 31);
+        display: flex;
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+        flex-wrap: nowrap;
 
-}
-
-.header-inner {
-    margin: 0 auto;
-    display: flex;
-}
-
-.header-title {
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
-    text-align: left;
-    margin: auto 0;
-    letter-spacing: 3px;
-    cursor: pointer;
-    text-wrap: nowrap;
-    min-width: 750px;
-
-    .strong {
-        background-color: $mainColor;
-        padding-left: 3px;
-        border-radius: 5px;
-        margin-right: 3px;
-        color: #111;
     }
-}
 
-.header-nav {
-    display: inline-block;
-    padding: 0;
-    margin-left: 15px;
-    margin-top: 5px;
-    height: 60px;
-    text-wrap: nowrap;
-    font-weight: 400;
+    .header-inner {
+        margin: 0 auto;
+        display: flex;
+    }
 
-    li {
-        position: relative;
-        top: -5px;
+    .header-title {
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: left;
+        margin: auto 0;
+        letter-spacing: 3px;
+        cursor: pointer;
+        text-wrap: nowrap;
+        min-width: 750px;
+
+        .strong {
+            background-color: $mainColor;
+            padding-left: 3px;
+            border-radius: 5px;
+            margin-right: 3px;
+            color: #111;
+        }
+    }
+
+    .header-nav {
         display: inline-block;
-        list-style: none;
-        margin-right: 3px;
+        padding: 0;
+        margin-left: 15px;
+        margin-top: 5px;
+        height: 60px;
+        text-wrap: nowrap;
+        font-weight: 400;
 
+        li {
+            position: relative;
+            top: -5px;
+            display: inline-block;
+            list-style: none;
+            margin-right: 3px;
+
+        }
+
+        li:hover {
+            background-color: #222;
+            border-radius: 3px;
+        }
+
+        .header-nav-item {
+            display: block;
+            font-size: 14px;
+            line-height: 60px;
+            padding: 0 10px;
+            color: white;
+            cursor: pointer;
+        }
     }
 
-    li:hover {
-        background-color: #222;
+    .header-search {
+        margin: auto 30px;
+        text-align: center;
+    }
+
+    .header-userInfo {
+        margin: auto 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-right: 10px;
+        text-align: right;
+        line-height: 60px;
+        cursor: pointer;
+    }
+
+    .header-userInfo:hover {
+        background-color: #535353;
         border-radius: 3px;
     }
 
-    .header-nav-item {
-        display: block;
-        font-size: 14px;
-        line-height: 60px;
-        padding: 0 10px;
-        color: white;
-        cursor: pointer;
-    }
-}
-
-.header-search {
-    margin: auto 30px;
-    text-align: center;
-}
-
-.header-userInfo {
-    margin: auto 0;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-right: 10px;
-    text-align: right;
-    line-height: 60px;
-    cursor: pointer;
-}
-
-.header-userInfo:hover {
-    background-color: #535353;
-    border-radius: 3px;
-}
-
-.header-login {
-    margin: auto 0;
-    // min-width: 200px;
-    text-align: right;
-
-    .header-user-linkbtn {
-        position: relative;
-        right: 5px;
+    .header-login {
+        margin: auto 0;
+        // min-width: 200px;
         text-align: right;
+
+        .header-user-linkbtn {
+            position: relative;
+            right: 5px;
+            text-align: right;
+        }
     }
-}
 
-.header-user-link {
-    text-align: left;
-    letter-spacing: 2px;
-    text-decoration: none;
-    color: orange;
-    text-wrap: nowrap;
-}
+    .header-user-link {
+        text-align: left;
+        letter-spacing: 2px;
+        text-decoration: none;
+        color: orange;
+        text-wrap: nowrap;
+    }
 
-.vip,
-.vip a {
-    color: red;
-}
+    .vip,
+    .vip a {
+        color: red;
+    }
 </style>

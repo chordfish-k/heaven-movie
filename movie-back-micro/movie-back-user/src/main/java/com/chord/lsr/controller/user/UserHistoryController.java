@@ -24,4 +24,15 @@ public class UserHistoryController {
     public Result<List<Movie>> getHistory() {
         return Result.success(userHistoryService.getHistory());
     }
+
+    /**
+     * 插入历史记录
+     * @param movieId
+     * @return
+     */
+    @PostMapping
+    public Result insertHistory(@RequestParam Long userId, @RequestParam Long movieId) {
+        userHistoryService.insertHistory(userId, movieId);
+        return Result.success();
+    }
 }

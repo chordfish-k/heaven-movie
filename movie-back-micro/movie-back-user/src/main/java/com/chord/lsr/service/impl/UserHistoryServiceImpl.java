@@ -1,8 +1,8 @@
 package com.chord.lsr.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.chord.lsr.client.MovieClient;
 import com.chord.lsr.context.UserContext;
-//import com.chord.lsr.mapper.MovieMapper;
 import com.chord.lsr.mapper.UserHistoryMapper;
 import com.chord.lsr.pojo.entity.Movie;
 import com.chord.lsr.pojo.entity.UserHistory;
@@ -19,8 +19,8 @@ public class UserHistoryServiceImpl implements UserHistoryService {
     @Autowired
     private UserHistoryMapper userHistoryMapper;
 
-//    @Autowired
-//    private MovieService movieService;
+    @Autowired
+    private MovieClient movieService;
 
     public List<Movie> getHistory() {
         Long userId = UserContext.getCurrentId();
@@ -31,14 +31,12 @@ public class UserHistoryServiceImpl implements UserHistoryService {
         // 根据id查出电影信息
         List<Movie> movieList = new ArrayList<>();
         historyIds.forEach(id->{
-//            movieList.add(movieService.selectById(id));
+            movieList.add(movieService.selectById(id).getData());
         });
         return movieList;
     }
 
-    public void insertHistory(Long movieId) {
-        Long userId = UserContext.getCurrentId();
-
+    public void insertHistory(Long userId, Long movieId) {
         LambdaQueryWrapper<UserHistory> qw = new LambdaQueryWrapper<>();
         qw.eq(UserHistory::getUserId, userId)
                 .eq(UserHistory::getMovieId, movieId);

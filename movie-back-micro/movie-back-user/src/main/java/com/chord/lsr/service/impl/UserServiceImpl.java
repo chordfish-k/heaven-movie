@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
 
     public User getById(Long id) {
-        User user = userMapper.selectById(UserContext.getCurrentId());
+        User user = userMapper.selectById(id);
         if (user == null) throw new AccountNotFoundException(MessageConstant.ACCOUNT_NOT_FOUND);
         return user;
     }
