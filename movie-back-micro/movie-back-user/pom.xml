@@ -7,8 +7,9 @@
         <version>1.0.0</version>
     </parent>
     <groupId>com.chord</groupId>
-    <artifactId>movie-back-service</artifactId>
-    <name>movie-back-service</name>
+    <artifactId>movie-back-user</artifactId>
+    <name>movie-back-user</name>
+
 
     <dependencies>
         <dependency>
@@ -86,4 +87,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

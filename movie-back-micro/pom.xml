@@ -12,6 +12,7 @@
 
         <module>movie-back-common</module>
         <module>movie-back-service</module>
+        <module>movie-back-user</module>
     </modules>
 
     <parent>

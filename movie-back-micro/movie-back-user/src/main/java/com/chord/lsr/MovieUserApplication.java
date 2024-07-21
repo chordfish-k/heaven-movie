@@ -16,10 +16,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableConfigurationProperties
 @EnableDiscoveryClient
 @ConfigurationPropertiesScan("com.chord.lsr.properties")
-public class MovieBackApplication {
+public class MovieUserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MovieBackApplication.class, args);
+        SpringApplication.run(MovieUserApplication.class, args);
     }
 
 }
