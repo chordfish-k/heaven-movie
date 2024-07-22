@@ -17,7 +17,7 @@ const queryDTO = ref({
 const sortId = ref(0)
 
 const showTypeList = ref([
-    "全部电影",
+    "全部影视",
     "正在热映"
 ])
 

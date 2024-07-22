@@ -58,7 +58,7 @@ const onSearchClicked = () => {
         <div class="header-inner">
             <div class="header-title"
                  @click="toHomePage">
-                天堂<span class="strong">电影</span>
+                天堂<span class="strong">影视</span>
                 <ul class="header-nav">
                     <li v-for="item in navList">
                         <a class="header-nav-item"

@@ -72,7 +72,7 @@ const onLogin = async (loginDTO) => {
         <div class="board">
 
             <div class="title">
-                天堂<span class="strong">电影</span>
+                天堂<span class="strong">影视</span>
             </div>
 
             <el-form class="form"
