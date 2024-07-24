@@ -66,10 +66,10 @@ const onSearchClicked = () => {
                     </li>
                 </ul>
             </div>
-            <div class="header-search">
+            <div class="header-search" >
                 <el-input v-model.trim="searchInput"
                           placeholder="根据名称搜索"
-                          @keyup.enter.native="onSearchClicked">
+                          @keyup.enter.native="onSearchClicked" >
                     <template #append>
                         <el-button :icon="Search"
                                    :disabled="false"
@@ -224,6 +224,7 @@ const onSearchClicked = () => {
     }
 
     .header-userInfo {
+        border-color: white;
         margin: auto 0;
         padding-left: 20px;
         padding-right: 20px;

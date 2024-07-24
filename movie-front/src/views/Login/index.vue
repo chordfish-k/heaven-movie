@@ -129,7 +129,7 @@ const onLogin = async (loginDTO) => {
 }
 
 .title {
-    color: white;
+    color: deepskyblue;
     font-size: 50px;
     font-weight: bold;
     text-align: center;
@@ -140,11 +140,11 @@ const onLogin = async (loginDTO) => {
     line-height: 140px;
 
     .strong {
-        background-color: $mainColor;
+        background-color: deepskyblue;
         padding-left: 3px;
         border-radius: 5px;
         margin-right: 3px;
-        color: #111;
+        color: white;
     }
 }
 
@@ -152,7 +152,6 @@ const onLogin = async (loginDTO) => {
     max-width: 300px;
     margin: 2rem auto;
 }
-
 // .el-button {
 //     background: $mainColor;
 // }
