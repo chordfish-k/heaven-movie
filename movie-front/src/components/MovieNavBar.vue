@@ -59,7 +59,7 @@ const onShowTypeChange = (index) => {
         }
 
         .active {
-            color: #111;
+            color: deepskyblue;
             font-weight: 600;
         }
 

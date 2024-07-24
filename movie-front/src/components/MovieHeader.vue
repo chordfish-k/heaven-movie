@@ -137,9 +137,9 @@ const onSearchClicked = () => {
     .header {
         width: 100vw;
         height: 60px;
-        background-color: rgb(16, 16, 16);
-        border-bottom: 1px solid rgb(31, 31, 31);
-        box-shadow: 1px 1px 2px rgb(31, 31, 31);
+        background-color: deepskyblue;
+        border-bottom: 1px solid lightskyblue;
+        box-shadow: 1px 1px 2px lightskyblue;
         display: flex;
         position: fixed;
         z-index: 10;
@@ -170,7 +170,7 @@ const onSearchClicked = () => {
             padding-left: 3px;
             border-radius: 5px;
             margin-right: 3px;
-            color: #111;
+            color: deepskyblue;
         }
     }
 
@@ -193,7 +193,7 @@ const onSearchClicked = () => {
         }
 
         li:hover {
-            background-color: #222;
+            background-color: deepskyblue;
             border-radius: 3px;
         }
 
@@ -210,6 +210,17 @@ const onSearchClicked = () => {
     .header-search {
         margin: auto 30px;
         text-align: center;
+        color:white;
+        background-color: deepskyblue;
+        border-color: skyblue;
+      .el-button {
+        background-color: lightskyblue;
+        border-color: skyblue;
+      }
+      .el-button:hover {
+        background-color: skyblue;
+        border-color: deepskyblue;
+      }
     }
 
     .header-userInfo {
@@ -223,7 +234,7 @@ const onSearchClicked = () => {
     }
 
     .header-userInfo:hover {
-        background-color: #535353;
+        background-color: deepskyblue;
         border-radius: 3px;
     }
 
@@ -243,12 +254,12 @@ const onSearchClicked = () => {
         text-align: left;
         letter-spacing: 2px;
         text-decoration: none;
-        color: orange;
+        color: white;
         text-wrap: nowrap;
     }
 
     .vip,
     .vip a {
-        color: red;
+        color: white;
     }
 </style>

@@ -135,7 +135,7 @@ onMounted(async () => {
 
 .active {
     background: $mainColor;
-    color: #333;
+    color: deepskyblue;
     font-weight: 600;
 }
 </style>
