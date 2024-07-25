@@ -67,20 +67,20 @@ const handleClicked = (index) => {
 }
 
 .toplist-title {
-    color: deepskyblue;
+    color: #0092ff;
     font-size: 26px;
     margin-left: 30px;
     letter-spacing: 3px;
     width: 100%;
     line-height: 40px;
-    // border-bottom: 1px solid deepskyblue;
+    // border-bottom: 1px solid #0092ff;
 }
 
 .toplist-all-btn {
     float: right;
     text-decoration: none;
     font-size: 14px;
-    color: deepskyblue;
+    color: #0092ff;
     margin-top: 5px;
     letter-spacing: 0;
 
@@ -136,7 +136,7 @@ ul li {
         float: right;
         position: relative;
         top: 5px;
-        color: deepskyblue;
+        color: #0092ff;
     }
 
     .top3 {
