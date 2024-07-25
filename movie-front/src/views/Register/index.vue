@@ -185,7 +185,7 @@ const onRegister = async (registerDTO) => {
         padding-left: 3px;
         border-radius: 5px;
         margin-right: 3px;
-        color: #111;
+        color: deepskyblue;
     }
 }
 </style>

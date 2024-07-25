@@ -101,7 +101,7 @@ const downgradeVIP = async () => {
 .user-banner {
     width: 100%;
     height: 150px;
-    background-color: #222;
+    background-color: lightskyblue;
 
     .user-banner-inner {
         display: flex;
@@ -118,7 +118,7 @@ const downgradeVIP = async () => {
             width: 100px;
             height: 100px;
             border: 3px solid white;
-            background-color: black;
+            background-color: white;
             border-radius: 5px;
             text-align: center;
             justify-self: center;
@@ -148,7 +148,7 @@ const downgradeVIP = async () => {
         }
 
         .vip {
-            background-color: red;
+            background-color: deepskyblue;
         }
     }
 

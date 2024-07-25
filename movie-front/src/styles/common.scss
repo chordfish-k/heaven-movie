@@ -47,11 +47,13 @@ input[type='checkbox'] {
   outline: none;
   border: none;
   // -webkit-appearance: none;
-  &::placeholder {
-    color: $textColor;
-  }
 
+  &::placeholder {
+    color: white;
+  }
 }
+
+
 img {
   max-width: 100%;
   max-height: 100%;
