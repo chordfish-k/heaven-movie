@@ -120,7 +120,7 @@ const toMovie = () => {
 }
 
 .movie-score {
-    color: orange;
+    color: deepskyblue;
     font-weight: bold;
     font-style: italic;
     float: right;
@@ -183,7 +183,7 @@ const toMovie = () => {
         .score {
             float: right;
             margin-right: 5px;
-            color: orange;
+            color: deepskyblue;
             font-weight: bold;
             font-size: 20px;
             font-style: italic;

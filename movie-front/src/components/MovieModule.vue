@@ -82,7 +82,7 @@ onMounted(() => {
 }
 
 .module-title {
-    color: orange;
+    color: deepskyblue;
     font-size: 26px;
     margin-right: 15px;
     letter-spacing: 3px;
@@ -94,7 +94,7 @@ onMounted(() => {
     float: right;
     text-decoration: none;
     font-size: 14px;
-    color: orange;
+    color: deepskyblue;
     margin-top: 5px;
     letter-spacing: 0;
 

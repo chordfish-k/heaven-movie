@@ -243,7 +243,7 @@ const onSearchClicked = () => {
         text-align: left;
         letter-spacing: 2px;
         text-decoration: none;
-        color: orange;
+        color: deepskyblue;
         text-wrap: nowrap;
     }
 
